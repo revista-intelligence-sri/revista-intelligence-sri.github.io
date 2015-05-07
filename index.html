@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="application-name" content="Revista Intelligence" />
+    <meta name="copyright" content="Serviciul Roman de Informatii" />
+    <meta property="og:title" content="Revista Intelligence - SRI" />
+    <meta property="og:site_name" content="Revista Intelligence"/>
+    <meta property="og:url" content="https://revista-intelligence-sri.github.io/" />
+    <meta property="og:description" content="Revista Intelligence este lansată la 18 ani de la înfiinţarea Serviciului Român de Informaţii şi în contextul aprofundării actuale a proceselor de transformare interne din cadrul instituţiei noastre. Lansarea revistei coincide nu întâmplător cu un efort relevant al SRI, în ultimii ani, de a veni în sprijinul formării unei culturi de securitate în România" />
+    <meta property="og:image" content="https://revista-intelligence-sri.github.io/revista-intelligence-sri-martie-2015.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ro_RO" />
+<meta property="article:publisher" content="https://www.sri.ro/" />
+<meta name="description" content="Revista Intelligence este lansată la 18 ani de la înfiinţarea Serviciului Român de Informaţii şi în contextul aprofundării actuale a proceselor de transformare interne din cadrul instituţiei noastre. Lansarea revistei coincide nu " />
+    <title>Revista Intelligence - SRI</title>
+    <link rel="stylesheet" href="css/framework7.min.css">
+    <link rel="stylesheet" href="css/framework7.themes.min.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/my-app.css">
+  </head>
+  <body class="layout-dark">
+    <div class="statusbar-overlay with-panel-right"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-right panel-cover layout-dark">
+
+      <div class="content-block-title">Meniu</div>
+      <div class="list-block">
+      <ul>
+
+            <li><a href="lista.html" id="cat1" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Toate articolele</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria2.html" id="cat2" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Editorial &#351;i interviu</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria3.html" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Amenin&#355;&#259;ri asimetrice</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria4.html" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Securitate cibernetic&#259;</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria5.html" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Activitatea de intelligence</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria6.html" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Cultura de securitate</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria7.html" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Istoria intelligence-ului</div>
+            </div>
+            </div></a></li>
+            <li><a href="categoria8.html" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title">Rubrici speciale</div>
+            </div>
+            </div></a></li>
+            <li><a href="" class="close-panel item-link">
+            <div class="item-content">
+            <div class="item-inner">
+            <div class="item-title" onClick="goArt();">Galerie articole</div>
+            </div>
+            </div></a></li>
+
+      </ul>
+</div>
+    </div>
+
+
+    <div class="views">
+      <div class="view view-main">
+          <div class="navbar">
+            <div class="navbar-inner">
+
+              <div class="left">
+                  <img class="ibar" src="img/ibar.png">Revista Intelligence
+              </div>
+              <div class="right">
+                
+                <a href="#" class="link icon-only search" onclick="showPrompt();"><i class="icon2 ion-android-search"></i></a>
+                <a href="#" class="link open-panel icon-only"><i class="icon2 ion-android-drawer"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="pages navbar-through">
+            <div data-page="index" class="page">
+              <div class="page-content">
+                <div class="slider-container">
+                  <div class="slider-wrapper acasa">
+                  </div>
+                  <div class="slider-pagination"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- TEMPLATES-->
+	<script id="acasatemp" type="text/template">
+
+        {{#each posts}}
+			<span><mark>{{custom_fields.autor}}</mark><br>{{title}}</span>
+            <div style="background-image:url{{#thumbnail_images}}({{medium.url}}){{/thumbnail_images}}" class="slider-slide" id="{{id}}"></div>
+        {{/each}}
+
+    </script>
+    <script id="listaarticole" type="text/template">
+
+        {{#each posts}}
+          <li id="{{id}}">
+              <a href="#" class="item-content item-link">
+                  <div class="item-media"><img src="{{#thumbnail_images}}{{thumbnail.url}}{{/thumbnail_images}}" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">{{title}}</div>
+                    </div>
+                    <div class="item-subtitle">{{custom_fields.autor}}</div>
+                    <div class="item-text">{{excerpt}}</div>
+                  </div>
+                </a>
+          </li>
+        {{/each}}
+
+    </script>
+
+	<script id="articoltemp" type="text/template">
+
+      
+      <div class="imgcont"><div style="background-image:url({{post.thumbnail}})" class="imgart"></div></div>
+      <h2 class="titluarticol">{{post.title}}</h2>
+      <p class="gra"><i class="icon2 ion-person"></i> &nbsp;{{post.custom_fields.autor}} <br /><i class="icon2 ion-document-text"></i> &nbsp; {{#each post.categories}}{{title}}&nbsp;&nbsp;{{/each}}</p>
+      <div class="content-block-inner nomargin">
+          <p class="continutarticol">{{post.content}}</p>
+
+
+      </div>
+    </script>
+        <script id="cautatemp" type="text/template">
+
+        {{#each posts}}
+          <li id="{{id}}">
+              <a href="#" class="item-content item-link">
+                  <div class="item-media"><img src="{{#thumbnail_images}}{{thumbnail.url}}{{/thumbnail_images}}" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">{{title}}</div>
+                    </div>
+                    <div class="item-subtitle">{{custom_fields.autor}}</div>
+                    <div class="item-text">{{excerpt}}</div>
+                  </div>
+                </a>
+          </li>
+        {{/each}}
+
+    </script>
+    <!-- EO TEMPLATES-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62694584-1', 'auto');
+  ga('send', 'pageview');
+</script>
+  </body>
+</html>
