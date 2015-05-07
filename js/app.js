@@ -20,22 +20,17 @@ function getArticol(b) {
 }
 
 function getArticolData() {
+    if(!id && window.location.hash) id = window.location.hash.split('#').slice(-1)[0];
     $$.get(base + 'get_post&post_id=' + id, function(a) {
         obja = JSON.parse(a), getArticol(obja);
     });
-}
-
-function sendemail() {
-    var a = $$('.titluarticol').text();
-    var b = $$('.content-block-inner').text();
-    document.location.href = 'mailto:?subject=' + a + '&body=' + b;
 }
 
 function getArticles(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.unu').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -49,7 +44,7 @@ function getArticlesC2(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.doi').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -63,7 +58,7 @@ function getArticlesC3(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.trei').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -77,7 +72,7 @@ function getArticlesC4(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.patru').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -91,7 +86,7 @@ function getArticlesC5(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.cinci').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -105,7 +100,7 @@ function getArticlesC6(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.sase').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -119,7 +114,7 @@ function getArticlesC7(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.sapte').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -133,7 +128,7 @@ function getArticlesC8(b) {
     var a = compiledArticles(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.opt').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -147,7 +142,7 @@ function getArticlesCauta(b) {
     var a = compiledCauta(b);
     $$('.lst ul').append(a), $$('.infinite-scroll-preloader').css('display', 'none'), $$('.ccauta').css('display', 'block'), $$('.meniu').on('click', 'li', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
     });
 }
 
@@ -192,9 +187,15 @@ $$.get(base + 'get_recent_posts&count=5', function(c) {
         pagination: '.slider-pagination'
     }), $$('.slider-slide').on('click', function() {
         var a = $$(this);
-        id = a.attr('id'), mainView.loadPage('articol.html');
+        id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
+
     });
+    if(window.location.hash) {
+        mainView.loadPage('articol.html');
+        getArticolData();
+    }
 }), myApp.onPageInit('index', function(a) {
+
     $$.get(base + 'get_recent_posts&count=5', function(c) {
         var a = JSON.parse(c);
         var b = compiledAcasa(a);
@@ -202,14 +203,17 @@ $$.get(base + 'get_recent_posts&count=5', function(c) {
             pagination: '.slider-pagination'
         }), $$('.slider-slide').on('click', function() {
             var a = $$(this);
-            id = a.attr('id'), mainView.loadPage('articol.html');
-        }), p = 1;
+            id = a.attr('id'), mainView.loadPage('articol.html'); window.location.hash = '#' + id;
+
+        }), p = 1; 
     });
+    
+
 }), myApp.onPageAfterAnimation('index', function(a) {
-    ga = 0;
+    ga = 0; 
 }), myApp.onPageInit('articol', function(a) {
     $$('.trimiteemail').on('click', function() {
-        sendemail();
+        
     }), status = 'no', status2 = 'no', status3 = 'no', status4 = 'no', status5 = 'no', status6 = 'no', status7 = 'no', status8 = 'no', cstatus = 'no';
 }), myApp.onPageAfterAnimation('articol', function(a) {
     getArticolData();
@@ -226,6 +230,7 @@ $$.get(base + 'get_recent_posts&count=5', function(c) {
     }
     getData(1), ga = 1;
 }), myApp.onPageInit('categoria2', function(b) {
+
     $$('.infinite-scroll-preloader').css('display', 'block'), $$('.doi').css('display', 'none'), status2 = 'ok';
     var a = 1;
     $$('.doi').on('click', function() {
